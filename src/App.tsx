@@ -33,17 +33,14 @@ const App = (): JSX.Element => {
 
   return (
     <HelmetProvider>
-      <Helmet 
-        titleTemplate="%s | Bob's Programming Academy"
-        defaultTitle="Bob's Programming Academy"
-      />
+      <Helmet titleTemplate="%s | Omnichannel Solution" defaultTitle="Omnichannel Solution" />
       <ColorModeContext.Provider value={colorMode}>
         <ThemeProvider theme={getTheme(mode)}>
           <CssBaseline />
           <BrowserRouter>
             <Layout>
               <Routes>
-                <Route path='/' element={<Home />} />
+                <Route path="/" element={<Home />} />
               </Routes>
             </Layout>
           </BrowserRouter>
