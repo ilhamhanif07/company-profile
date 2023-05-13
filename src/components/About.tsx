@@ -109,6 +109,26 @@ const About = (): JSX.Element => {
             gutterBottom>
             Transforming customer connections. Empowering businesses. Omnichannel Solutions.
           </Typography>
+          <Typography
+            variant="subtitle1"
+            align="center"
+            color={theme.palette.text.secondary}
+            marginTop={theme.spacing(1)}
+            gutterBottom>
+            We are experts in omnichannel solutions for your business. We integrate digital
+            platforms, e-commerce, social media, and physical stores to deliver consistent and
+            personalized customer experiences.
+          </Typography>
+          <Typography
+            variant="subtitle1"
+            align="center"
+            color={theme.palette.text.secondary}
+            marginTop={theme.spacing(1)}
+            gutterBottom>
+            With our integrated approach, we help you achieve success in the ever-evolving digital
+            landscape. In-depth analytics, efficient inventory management, and accessible
+            configurations are our focus.
+          </Typography>
         </Box>
         <Container>
           <Grid container spacing={4}>

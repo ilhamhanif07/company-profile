@@ -8,26 +8,28 @@ import getTheme from './theme/theme';
 import ColorModeContext from './utils/ColorModeContext';
 import Layout from './layout/Layout';
 import Home from './pages/Home';
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
-const App = (): JSX.Element => {  
-  const [mode, setMode] = useState('dark');
+const App = (): JSX.Element => {
+  const [mode, setMode] = useState("dark");
   const colorMode = useMemo(
     () => ({
       // The theme mode switch will invoke this method
       toggleColorMode: () => {
-        window.localStorage.setItem('themeMode', mode === 'dark' ? 'light' : 'dark');
-        setMode((prevMode) => (prevMode === 'dark' ? 'light' : 'dark'));
+        window.localStorage.setItem("themeMode", mode === "dark" ? "light" : "dark");
+        setMode((prevMode) => (prevMode === "dark" ? "light" : "dark"));
       },
     }),
-    [mode],
+    [mode]
   );
 
   useEffect(() => {
     try {
-      const localTheme = window.localStorage.getItem('themeMode');
-      localTheme ? setMode(localTheme) : setMode('dark');
+      const localTheme = window.localStorage.getItem("themeMode");
+      localTheme ? setMode(localTheme) : setMode("dark");
     } catch {
-      setMode('dark');
+      setMode("dark");
     }
   }, []);
 
@@ -41,6 +43,8 @@ const App = (): JSX.Element => {
             <Layout>
               <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
               </Routes>
             </Layout>
           </BrowserRouter>

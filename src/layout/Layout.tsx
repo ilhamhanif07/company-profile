@@ -11,85 +11,110 @@ import { useTheme } from '@mui/material/styles';
 import Header from './Header';
 import Footer from './Footer';
 import Sidebar from './Sidebar';
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   children: React.ReactNode;
 }
 
 const Layout = ({ children }: Props): JSX.Element => {
+  const navigate = useNavigate();
+
   const theme = useTheme();
-  const isLg = useMediaQuery(
-    theme.breakpoints.up('lg'),
-    { defaultMatches: true }
-  );
-  
+  const isLg = useMediaQuery(theme.breakpoints.up("lg"), { defaultMatches: true });
+
   const [openSidebar, setOpenSidebar] = useState(false);
-  
+
   const handleSidebarOpen = (): void => {
     setOpenSidebar(true);
   };
-  
+
   const handleSidebarClose = (): void => {
     setOpenSidebar(false);
   };
-  
+
   const open = isLg ? false : openSidebar;
 
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 100,
   });
-    
+
   const scrollTo = (id: string): void => {
     setTimeout(() => {
       const element = document.querySelector(`#${id}`) as HTMLElement;
       if (!element) {
         return;
       }
-      window.scrollTo({ left: 0, top: element.offsetTop, behavior: 'smooth' });
+      window.scrollTo({ left: 0, top: element.offsetTop, behavior: "smooth" });
     });
   };
-  
+
+  const onLogout = () => {
+    localStorage.removeItem("__SNID__");
+    navigate("/");
+  };
+
+  const users = React.useMemo(() => {
+    const snid = localStorage.getItem("__SNID__");
+    if (snid) {
+      return JSON.parse(snid);
+    }
+    return null;
+  }, [onLogout]);
+  const isLoggedIn = React.useMemo(() => Boolean(users), [onLogout]);
+
   return (
-    <Box 
-      id='page-top'
+    <Box
+      id="page-top"
       sx={{
         backgroundColor: theme.palette.background.default,
-        height: '100%'
-      }}
-    >
-      <Header onSidebarOpen={handleSidebarOpen} />
+        height: "100%",
+      }}>
+      <Header
+        onSidebarOpen={handleSidebarOpen}
+        isLoggedIn={isLoggedIn}
+        users={users}
+        logout={onLogout}
+      />
       <Sidebar
         onClose={handleSidebarClose}
         open={open}
+        isLoggedIn={isLoggedIn}
+        users={users}
+        logout={onLogout}
       />
-      <Box
-        width={1}
-        margin='0 auto'
-      >
+      <Box width={1} margin="0 auto">
         {children}
       </Box>
       <Footer />
       <NoSsr>
         <Zoom in={trigger}>
           <Box
-            onClick={() => scrollTo('page-top')}
-            role='presentation'
-            sx={{ position: 'fixed', bottom: 24, right: 32 }}
-          >
-            <Fab 
-              color='primary' 
-              size='small' 
-              aria-label='scroll back to top'
+            onClick={() => scrollTo("page-top")}
+            role="presentation"
+            sx={{ position: "fixed", bottom: 24, right: 32 }}>
+            <Fab
+              color="primary"
+              size="small"
+              aria-label="scroll back to top"
               sx={{
-                color: theme.palette.mode === 'dark' ? theme.palette.common.black : theme.palette.common.white,
-                '&:hover': {
-                  backgroundColor: 'transparent',
-                  color: theme.palette.mode === 'dark' ? theme.palette.primary.main : theme.palette.success.dark,
-                  border: '2px solid ' + theme.palette.mode === 'dark' ? theme.palette.primary.main : theme.palette.success.dark,
+                color:
+                  theme.palette.mode === "dark"
+                    ? theme.palette.common.black
+                    : theme.palette.common.white,
+                "&:hover": {
+                  backgroundColor: "transparent",
+                  color:
+                    theme.palette.mode === "dark"
+                      ? theme.palette.primary.main
+                      : theme.palette.success.dark,
+                  border:
+                    "2px solid " + theme.palette.mode === "dark"
+                      ? theme.palette.primary.main
+                      : theme.palette.success.dark,
                 },
-              }}
-            >
+              }}>
               <KeyboardArrowUpIcon />
             </Fab>
           </Box>

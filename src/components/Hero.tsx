@@ -28,24 +28,6 @@ const iugene =
 const Hero = (): JSX.Element => {
   const theme = useTheme();
 
-  const [hero, setHero] = useState<HeroProps[]>([]);
-
-  const fetchHero = () => {
-    axios
-      .get<HeroProps[]>("http://127.0.0.1:8000/hero", {
-        headers: {
-          Accept: "application/json",
-        },
-      })
-      .then((response) => {
-        setHero(response.data);
-      })
-      .catch((error) => console.log(error));
-  };
-
-  useEffect(() => {
-    fetchHero();
-  }, []);
 
   return (
     <div id="home">

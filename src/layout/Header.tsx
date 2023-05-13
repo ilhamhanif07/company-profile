@@ -20,9 +20,12 @@ import Logo from "../assets/logo/logo.png";
 
 interface Props {
   onSidebarOpen: () => void;
+  isLoggedIn: boolean;
+  users: any;
+  logout: () => void;
 }
 
-const Header = ({ onSidebarOpen }: Props): JSX.Element => {
+const Header = ({ onSidebarOpen, isLoggedIn, users, logout }: Props): JSX.Element => {
   const theme = useTheme();
   const colorMode = useContext(ColorModeContext);
 
@@ -63,11 +66,35 @@ const Header = ({ onSidebarOpen }: Props): JSX.Element => {
               alignItems: "center",
               display: { lg: "flex", md: "none", xs: "none" },
             }}>
-            <CustomButton href="#products" text="Products" />
-            <CustomButton href="#services" text="Services" />
-            <CustomButton href="#pricing" text="Pricing" />
-            <CustomButton href="#about" text="About" />
-            <CustomButton href="#contact" text="Contact" />
+            <CustomButton href="/#home" text="Home" />
+            <CustomButton href="/#products" text="Products" />
+            <CustomButton href="/#services" text="Services" />
+            <CustomButton href="/#pricing" text="Pricing" />
+            <CustomButton href="/#about" text="About" />
+            <CustomButton href="/#contact" text="Contact" />
+            <Divider
+              orientation="vertical"
+              flexItem
+              sx={{
+                mr: isLoggedIn ? "15px" : "unset",
+                borderWidth: "2px",
+                borderColor:
+                  theme.palette.mode === "dark"
+                    ? theme.palette.text.primary
+                    : theme.palette.text.secondary,
+              }}
+            />
+            {!isLoggedIn ? (
+              <>
+                <CustomButton href="login" text="Sign in" />
+                <CustomButton href="signup" text="Sign up" />
+              </>
+            ) : (
+              <>
+                <Typography component={"p"}>Hello, {users?.username}</Typography>
+                <Button onClick={logout}> Logout</Button>
+              </>
+            )}
           </Box>
           <Divider
             orientation="vertical"
