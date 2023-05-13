@@ -14,13 +14,15 @@ const Login = (): JSX.Element => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [busy, setBusy] = useState(false);
 
   const alertRef = useRef<any>();
 
   const onLogin = () => {
+    setBusy(true);
     axios
       .post(
-        "http://localhost:3001/login",
+        "https://company-profile-be.vercel.app/login",
         {
           email,
           password,
@@ -38,7 +40,8 @@ const Login = (): JSX.Element => {
         if (error) {
           alertRef.current.showAlert("Email or Password is incorrect", "warning");
         }
-      });
+      })
+      .finally(() => setBusy(false));
   };
 
   return (
@@ -93,8 +96,8 @@ const Login = (): JSX.Element => {
                   sx={{ width: "100%" }}
                 />
               </Box>
-              <Button variant="contained" onClick={onLogin}>
-                Login
+              <Button variant="contained" onClick={onLogin} disabled={busy}>
+                {busy ? "Waiting..." : "Login"}
               </Button>
             </Container>
           </Box>

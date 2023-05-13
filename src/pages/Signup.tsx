@@ -15,13 +15,15 @@ const Signup = (): JSX.Element => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [busy, setBusy] = useState(false);
 
   const alertRef = useRef<any>();
 
   const onSignup = () => {
+    setBusy(true);
     axios
       .post(
-        "http://localhost:3001/users",
+        "https://company-profile-be.vercel.app/users",
         {
           email,
           password,
@@ -44,7 +46,8 @@ const Signup = (): JSX.Element => {
         if (error) {
           alertRef.current.showAlert("Register Failed", "warning");
         }
-      });
+      })
+      .finally(() => setBusy(false));
   };
 
   return (
@@ -110,8 +113,8 @@ const Signup = (): JSX.Element => {
                   sx={{ width: "100%" }}
                 />
               </Box>
-              <Button variant="contained" onClick={onSignup}>
-                Signup
+              <Button variant="contained" onClick={onSignup} disabled={busy}>
+                {busy ? "Waiting..." : "Sign up"}
               </Button>
             </Container>
           </Box>
