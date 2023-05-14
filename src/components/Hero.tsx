@@ -95,6 +95,7 @@ const Hero = (): JSX.Element => {
           background={{
             backgroundImageSrc: giauPass,
           }}
+          style={{ filter: "brightness(0.5)" }}
         />
 
         <Slide

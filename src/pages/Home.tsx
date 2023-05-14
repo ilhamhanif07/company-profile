@@ -12,15 +12,14 @@ import { useLocation } from "react-router-dom";
 const Home = (): JSX.Element => {
   const location = useLocation();
 
-  if (location.hash) {
-    setTimeout(() => {
-      document
-        .getElementById(location.hash.replace("#", ""))
-        ?.scrollIntoView({ behavior: "smooth" });
-    }, 500);
-  }
 
-  console.log(location.hash);
+  React.useEffect(() => {
+    if (location.hash) {
+      setTimeout(() => {
+        document.getElementById(location.hash.replace("#", ""))?.scrollIntoView({ behavior: "smooth" });
+      }, 500);
+    }
+  }, [location.hash]);
 
   return (
     <div id="home">
