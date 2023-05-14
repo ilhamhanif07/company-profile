@@ -24,10 +24,15 @@ const giauPass =
   "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80";
 const iugene =
   "https://media.istockphoto.com/id/655652514/id/foto/pengusaha-wanita-memeriksa-data-di-smartphone-dan-tablet.jpg?s=612x612&w=0&k=20&c=xT2j9MUd-TtpLpBvwOdXWXiT-ZzLhlxSMQVFGQu0B7g=";
+const lofur =
+  "https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80";
+const sales =
+  "https://images.unsplash.com/photo-1556740714-a8395b3bf30f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80";
+const wincay =
+  "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80";
 
 const Hero = (): JSX.Element => {
   const theme = useTheme();
-
 
   return (
     <div id="home">
@@ -79,7 +84,7 @@ const Hero = (): JSX.Element => {
                   interactions, ensuring consistency and customer satisfaction in every touchpoint.
                 </Typography>
               </Box>
-              <HeroButtons />
+              {/* <HeroButtons /> */}
             </Container>
           </Box>
         </Overlay>
@@ -124,6 +129,31 @@ const Hero = (): JSX.Element => {
           label="People"
           background={{
             backgroundImageSrc: iugene,
+          }}
+          style={{ filter: "brightness(0.5)" }}
+        />
+
+        <Slide
+          shouldRenderMask
+          label="Lofur"
+          background={{
+            backgroundImageSrc: lofur,
+          }}
+          style={{ filter: "brightness(0.5)" }}
+        />
+        <Slide
+          shouldRenderMask
+          label="Sales"
+          background={{
+            backgroundImageSrc: sales,
+          }}
+          style={{ filter: "brightness(0.5)" }}
+        />
+        <Slide
+          shouldRenderMask
+          label="Warehouse"
+          background={{
+            backgroundImageSrc: wincay,
           }}
           style={{ filter: "brightness(0.5)" }}
         />

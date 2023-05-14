@@ -10,6 +10,8 @@ import Layout from './layout/Layout';
 import Home from './pages/Home';
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Article from "./pages/Article";
+import DetailArticle from "./pages/DetailArticle";
 
 const App = (): JSX.Element => {
   const [mode, setMode] = useState("dark");
@@ -45,6 +47,8 @@ const App = (): JSX.Element => {
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
+                <Route path="/article" element={<Article />} />
+                <Route path="/article/:id" element={<DetailArticle />} />
               </Routes>
             </Layout>
           </BrowserRouter>

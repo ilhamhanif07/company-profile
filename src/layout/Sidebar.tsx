@@ -77,6 +77,12 @@ const Sidebar = ({ open, onClose, users, isLoggedIn, logout }: Props): JSX.Eleme
                 <CustomButton href="/#pricing" text="Pricing" />
               </Box>
               <Box paddingY={1}>
+                <CustomButton href="/article" text="Article" />
+              </Box>
+              <Box paddingY={1}>
+                <CustomButton href="/#home" text="Galery Foto" />
+              </Box>
+              <Box paddingY={1}>
                 <CustomButton href="/#about" text="About" />
               </Box>
               <Box paddingY={1}>

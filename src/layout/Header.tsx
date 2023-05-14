@@ -70,6 +70,8 @@ const Header = ({ onSidebarOpen, isLoggedIn, users, logout }: Props): JSX.Elemen
             <CustomButton href="/#products" text="Products" />
             <CustomButton href="/#services" text="Services" />
             <CustomButton href="/#pricing" text="Pricing" />
+            <CustomButton href="/article" text="Article" />
+            <CustomButton href="/#home" text="Galery Foto" />
             <CustomButton href="/#about" text="About" />
             <CustomButton href="/#contact" text="Contact" />
             <Divider
